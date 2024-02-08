@@ -1,0 +1,72 @@
+# Yusuf Sami Lök 2521748
+.pos 0x0
+init:
+    irmovq stack, %rsp
+    irmovq $6, %rdx
+    irmovq array_begin, %rdi
+    irmovq array_end, %rsi
+    call binary_search
+    halt
+
+#implement your code below (DO NOT CHANGE/REMOVE THIS COMMENT)
+
+binary_search:
+    rrmovq %rdi, %r8
+loop_begin:
+    rrmovq %rsi, %r9
+    subq %rdi, %r9
+    jle rett
+    rrmovq %rdi, %rcx
+    rrmovq %rsi, %r9
+    subq %rdi, %r9
+    irmovq $16, %r10
+    dvvq %r10, %r9
+    irmovq $8, %r11
+    mllq %r11, %r9
+    addq %r9, %rcx
+    rrmovq %rdx, %r9
+    mrmovq (%rcx), %r11
+    subq %r11, %r9
+    je ret1
+    jl con1
+    irmovq $8, %r9
+    rrmovq %rcx, %rdi
+    addq %r9, %rdi
+    jmp loop_begin
+con1:
+    rrmovq %rcx, %rsi
+    jmp loop_begin
+ret1:
+    subq %r8, %rcx
+    irmovq $8, %r9
+    addq %r9, %rcx
+    dvvq %r9, %rcx
+    rrmovq %rcx, %rax
+    ret
+rett:
+    irmovq $-1, %rax
+    ret
+
+
+
+
+
+#implement your code above (DO NOT CHANGE/REMOVE THIS COMMENT)
+
+.pos 0x1008
+array_begin:
+    .quad 1
+    .quad 2
+    .quad 3
+    .quad 5
+    .quad 6
+    .quad 7
+    .quad 9
+    .quad 11
+array_end:
+    .quad 0
+.pos 0x1F00
+stack:
+    .quad 0
+
+
