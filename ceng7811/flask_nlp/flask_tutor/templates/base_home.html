@@ -1,0 +1,236 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    :root {
+        --primary-color: #0A2472;    
+        --secondary-color: #1B3B6F;  
+        --accent-color: #BDD5EA;     
+        --text-dark: #333333;
+        --text-light: #666666;
+        --background: #F7F9FC;
+        --white: #FFFFFF;
+    }
+
+    .home-container {
+        margin-top: 80px;
+        width: 100%;
+        overflow-x: hidden;
+        background: var(--background);
+    }
+
+    .hero-section {
+        background: var(--white);
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .features-section {
+        background: var(--background);
+        padding: 60px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 40px;
+    }
+
+    .features-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .feature-card {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        font-size: 40px;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+
+    .feature-title {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    .feature-description {
+        color: var(--text-light);
+        line-height: 1.6;
+    }
+
+    .app-section {
+        padding: 60px 0;
+        background: var(--white);
+    }
+
+    .app-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .app-title {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .app-description {
+        color: var(--text-light);
+        margin-bottom: 30px;
+        line-height: 1.7;
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .app-logo {
+        margin-bottom: 40px;
+    }
+
+    .app-logo img {
+        width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .app-stores {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .store-badge {
+        transition: transform 0.3s ease;
+        max-width: 200px;
+        display: inline-block;
+    }
+
+    .store-badge:hover {
+        transform: translateY(-5px);
+    }
+
+    .store-badge img {
+        height: 60px;
+        width: auto;
+    }
+
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .app-stores {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .store-badge img {
+            height: 50px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .app-logo img {
+            width: 150px;
+        }
+    }
+</style>
+
+<div class="home-container">
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to METU Personal Tutor</h1>
+            <p class="hero-subtitle">
+                Discover a new way to enhance your mental wellness with METU Personal Tutor. 
+                Our platform offers tools and resources to support your journey towards 
+                better mental health and emotional well-being.
+            </p>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">Explore Our Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">Personalized Insights</h3>
+                <p class="feature-description">
+                    Get tailored insights and recommendations to improve your mental health.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="feature-title">Emotional Support</h3>
+                <p class="feature-description">
+                    Access resources and tools to help manage your emotions effectively.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Progress Tracking</h3>
+                <p class="feature-description">
+                    Monitor your mental wellness journey with detailed progress tracking.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock content %}

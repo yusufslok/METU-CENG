@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .form-container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        color: #2c3e50;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #eee;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control-label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 0.75rem;
+        transition: all 0.3s ease;
+        font-size: 1rem !important;
+    }
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-container {
+            margin: 1rem;
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<div class="form-container">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <h2 class="form-title">{{ legend }}</h2>
+        
+        <div class="form-grid">
+            <!-- Gender -->
+            <div class="form-group">
+                {{ form.gender.label(class="form-control-label") }}
+                {% if form.gender.errors %}
+                    {{ form.gender(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.gender.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.gender(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                {{ form.age.label(class="form-control-label") }}
+                {% if form.age.errors %}
+                    {{ form.age(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.age.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.age(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Height -->
+            <div class="form-group">
+                {{ form.height.label(class="form-control-label") }}
+                {% if form.height.errors %}
+                    {{ form.height(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.height.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.height(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Weight -->
+            <div class="form-group">
+                {{ form.weight.label(class="form-control-label") }}
+                {% if form.weight.errors %}
+                    {{ form.weight(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.weight.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.weight(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Sleep Duration -->
+            <div class="form-group">
+                {{ form.sleep_duration.label(class="form-control-label") }}
+                {% if form.sleep_duration.errors %}
+                    {{ form.sleep_duration(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sleep_duration.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sleep_duration(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Sleep Quality -->
+            <div class="form-group">
+                {{ form.sleep_quality.label(class="form-control-label") }}
+                {% if form.sleep_quality.errors %}
+                    {{ form.sleep_quality(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sleep_quality.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sleep_quality(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Physical Activity -->
+            <div class="form-group">
+                {{ form.physical_activity.label(class="form-control-label") }}
+                {% if form.physical_activity.errors %}
+                    {{ form.physical_activity(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.physical_activity.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.physical_activity(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Daily Step -->
+            <div class="form-group">
+                {{ form.daily_step.label(class="form-control-label") }}
+                {% if form.daily_step.errors %}
+                    {{ form.daily_step(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.daily_step.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.daily_step(class="form-control") }}
+                {% endif %}
+            </div>
+            
+            <!-- Screen Hours -->
+            <div class="form-group">
+                {{ form.screen_hours.label(class="form-control-label") }}
+                {% if form.screen_hours.errors %}
+                    {{ form.screen_hours(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.screen_hours.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.screen_hours(class="form-control") }}
+                {% endif %}
+            </div>
+
+            
+            <!-- Time Indoors -->
+            <div class="form-group">
+                {{ form.time_indoors.label(class="form-control-label") }}
+                {% if form.time_indoors.errors %}
+                    {{ form.time_indoors(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.time_indoors.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.time_indoors(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <!-- Noise Level -->
+            <div class="form-group">
+                {{ form.noise_level.label(class="form-control-label") }}
+                {% if form.noise_level.errors %}
+                    {{ form.noise_level(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.noise_level.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.noise_level(class="form-control") }}
+                {% endif %}
+            </div>
+
+        <!-- Submit Button -->
+        {{ form.submit(class="submit-btn") }}
+    </form>
+</div>
+{% endblock content %}

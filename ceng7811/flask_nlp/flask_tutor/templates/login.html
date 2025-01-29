@@ -1,0 +1,235 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .login-wrapper {
+        padding: 20px;
+        margin-top: 60px; /* Space for navbar */
+    }
+
+    .login-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .login-header {
+        padding: 25px;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        text-align: center;
+    }
+
+    .login-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 0;
+        color: white;
+    }
+
+    .form-section {
+        padding: 40px 60px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-control-label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 1rem !important;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .form-control:focus {
+        border-color: #19b89d;
+        box-shadow: 0 0 0 0.2rem rgba(25, 184, 157, 0.25);
+        outline: none;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+
+    .form-check {
+        margin: 20px 0;
+    }
+
+    .form-check-input {
+        margin-right: 8px;
+    }
+
+    .form-check-label {
+        color: #6c757d;
+        cursor: pointer;
+    }
+
+    .login-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .action-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .forgot-link {
+        color: #6c757d;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .forgot-link:hover {
+        color: #19b89d;
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, #19b89d, #14a0a0);
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        width: 100%;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(20, 160, 160, 0.2);
+    }
+
+    .login-footer {
+        padding: 20px;
+        background: #f8f9fa;
+        text-align: center;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .signup-link {
+        color: #19b89d;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .signup-link:hover {
+        color: #14a0a0;
+    }
+
+    .alert {
+        margin: 0 auto 20px;
+        max-width: 800px;
+        border-radius: 10px;
+        padding: 15px 20px;
+    }
+
+    @media (max-width: 768px) {
+        .login-wrapper {
+            padding: 15px;
+        }
+
+        .form-section {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="login-wrapper">
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="login-container">
+        <div class="login-header">
+            <h2 class="login-title">Welcome Back</h2>
+        </div>
+
+        <div class="form-section">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+
+                <div class="login-actions">
+                    <div class="action-links">
+                        <a href="{{ url_for('users.reset_request') }}" class="forgot-link">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    {{ form.submit(class="submit-btn") }}
+                </div>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            <p class="mb-0">
+                Need An Account? 
+                <a href="{{ url_for('users.register') }}" class="signup-link">Sign Up Now</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

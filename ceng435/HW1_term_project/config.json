@@ -1,0 +1,26 @@
+{
+  "covert_channel_code": "CSC-PSV-TCP-DP",
+  "send": {
+    "parameters": {
+      "log_file_name": "sender.log",
+      "base_port": 49152,
+      "port_range": 16383,
+      "two": 2,
+      "three": 3,
+      "five": 5,
+      "seven": 7
+    }
+  },
+  "receive": {
+    "parameters": {
+      "base_port": 49152,
+      "port_range": 16383,
+      "timeout": 30,
+      "log_file_name": "receiver.log",
+      "two": 2,
+      "three": 3,
+      "five": 5,
+      "seven": 7
+    }
+  }
+}
